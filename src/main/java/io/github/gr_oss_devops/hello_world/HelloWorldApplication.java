@@ -1,4 +1,4 @@
-package io.gr_oss_devops.hello_world;
+package io.github.gr_oss_devops.hello_world;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
