@@ -12,20 +12,33 @@
 	<artifactId>hello-world</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hello-world</name>
-	<description>Demo project for Spring Boot</description>
-	<url/>
+	<description>A demo for deployment to the Central Repository via OSSRH</description>
+	<url>https://github.com/gr-oss-devops/hello-world</url>
+
 	<licenses>
-		<license/>
+		<license>
+			<name>Apache 2.0 License</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+			<distribution>repo</distribution>
+		</license>
 	</licenses>
+
 	<developers>
-		<developer/>
+		<developer>
+			<name>Ivan Pavlovic</name>
+			<email>ivan@gr-oss.io</email>
+			<organization>G-Research</organization>
+			<organizationUrl>https://www.gresearch.com/</organizationUrl>
+		</developer>
 	</developers>
+
 	<scm>
-		<connection/>
-		<developerConnection/>
+		<connection>scm:git:git://github.com/gr-oss-devops/hello-world.git</connection>
+		<developerConnection>scm:git:ssh://github.com:gr-oss-devops/hello-world.git</developerConnection>
+		<url>http://github.com/gr-oss-devops/hello-world/tree/main</url>
 		<tag/>
-		<url/>
 	</scm>
+
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -48,7 +61,58 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 
 </project>
