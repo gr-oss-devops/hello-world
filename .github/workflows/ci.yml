@@ -30,6 +30,7 @@ jobs:
 
     - name: Release artifacts
       run: |
+        pwd
         ls -la
         mvn --batch-mode deploy -DskipTests
       env:
