@@ -2,6 +2,8 @@ name: CI
 
 on:
   push:
+    branches:
+      - main
     tags:
       - "v*"
 
@@ -27,7 +29,9 @@ jobs:
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
     - name: Release artifacts
-      run: mvn --batch-mode deploy -DskipTests
+      run: |
+        ls -la
+        mvn --batch-mode deploy -DskipTests
       env:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
