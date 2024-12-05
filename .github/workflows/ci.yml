@@ -32,6 +32,7 @@ jobs:
       run: |
         pwd
         ls -la /home/runner/.m2
+        cat /home/runner/.m2/settings.xml
         mvn --batch-mode deploy -DskipTests
       env:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
