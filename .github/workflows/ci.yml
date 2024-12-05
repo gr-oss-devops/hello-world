@@ -31,7 +31,16 @@ jobs:
     - name: Release artifacts
       run: |
         pwd
-        ls -la
+        echo "first"
+        ls -la /home
+        echo "second"
+        ls -la /home/runner
+        echo "third"
+        ls -la /home/runner/work
+        echo "fourth"
+        ls -la /home/runner/work/hello-world
+        echo "fifth"
+        ls -la /home/runner/work/hello-world/hello-world
         mvn --batch-mode deploy -DskipTests
       env:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
