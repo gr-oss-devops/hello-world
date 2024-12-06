@@ -28,6 +28,9 @@ jobs:
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
+    - name: Build
+      run: mvn clean install -DskipTests
+
     - name: Release artifacts
       run: |
         pwd
