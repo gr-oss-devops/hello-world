@@ -17,7 +17,6 @@ jobs:
 
     - name: Set up Maven Central Repository
       uses: actions/setup-java@c3ac5dd0ed8db40fedb61c32fbe677e6b355e94c
-#      uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'adopt'
@@ -27,7 +26,6 @@ jobs:
         server-password: MAVEN_PASSWORD
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
-        overwrite-settings: false
 
     - name: Build
       run: |
@@ -35,14 +33,14 @@ jobs:
         ls -la /home/runner/.m2
         cp settings.xml /home/runner/.m2
         cat /home/runner/.m2/settings.xml
-        mvn clean install -DskipTests -X
+        mvn clean install -DskipTests
 
     - name: Release artifacts
       run: |
         pwd
         ls -la /home/runner/.m2
         cat /home/runner/.m2/settings.xml
-        mvn --batch-mode deploy -DskipTests -X
+        mvn --batch-mode deploy -DskipTests
       env:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
