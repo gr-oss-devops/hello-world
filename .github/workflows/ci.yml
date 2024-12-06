@@ -29,7 +29,11 @@ jobs:
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
     - name: Build
-      run: mvn clean install -DskipTests
+      run: |
+        pwd
+        ls -la /home/runner/.m2
+        cat /home/runner/.m2/settings.xml
+        mvn clean install -DskipTests
 
     - name: Release artifacts
       run: |
