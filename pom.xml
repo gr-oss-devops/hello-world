@@ -123,6 +123,13 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<!-- Specify the key ID to use -->
+					<gpgArguments>
+						<arg>--default-key</arg>
+						<arg>F258630064F6E2AD516FDB04650013F48467235F</arg>
+					</gpgArguments>
+				</configuration>
 			</plugin>
 
 		</plugins>
