@@ -8,17 +8,17 @@
             <password>${env.MAVEN_PASSWORD}</password>
         </server>
     </servers>
-<!--    <profiles>-->
-<!--        <profile>-->
-<!--            <id>gpg-signing</id>-->
-<!--            <properties>-->
-<!--                <gpg.executable>gpg</gpg.executable>-->
-<!--                <gpg.passphrase>${env.MAVEN_GPG_PASSPHRASE}</gpg.passphrase>-->
-<!--                <gpg.args>&#45;&#45;batch &#45;&#45;pinentry-mode loopback</gpg.args>-->
-<!--            </properties>-->
-<!--        </profile>-->
-<!--    </profiles>-->
-<!--    <activeProfiles>-->
-<!--        <activeProfile>gpg-signing</activeProfile>-->
-<!--    </activeProfiles>-->
+    <profiles>
+        <profile>
+            <id>gpg-signing</id>
+            <properties>
+                <gpg.executable>gpg</gpg.executable>
+                <gpg.passphrase>${env.MAVEN_GPG_PASSPHRASE}</gpg.passphrase>
+                <gpg.args>--batch --pinentry-mode loopback</gpg.args>
+            </properties>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>gpg-signing</activeProfile>
+    </activeProfiles>
 </settings>
