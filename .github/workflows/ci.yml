@@ -29,7 +29,7 @@ jobs:
 
     - name: Build
       run: |
-        grep default-key ~/.gnupg/gpg.conf
+        gpg --list-keys
         cp settings.xml /home/runner/.m2
         cat /home/runner/.m2/settings.xml
         mvn clean install -DskipTests
