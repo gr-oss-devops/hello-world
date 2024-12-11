@@ -27,21 +27,25 @@ jobs:
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
-    - name: Build
+    - name: Debug
       run: |
-        pwd
-        ls -la /home/runner/.m2
-        cp settings.xml /home/runner/.m2
-        cat /home/runner/.m2/settings.xml
-        mvn clean install -DskipTests
+        gpg --list-keys
 
-    - name: Release artifacts
-      run: |
-        pwd
-        ls -la /home/runner/.m2
-        cat /home/runner/.m2/settings.xml
-        mvn --batch-mode deploy -DskipTests
-      env:
-        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-        MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+#    - name: Build
+#      run: |
+#        pwd
+#        ls -la /home/runner/.m2
+#        cp settings.xml /home/runner/.m2
+#        cat /home/runner/.m2/settings.xml
+#        mvn clean install -DskipTests
+#
+#    - name: Release artifacts
+#      run: |
+#        pwd
+#        ls -la /home/runner/.m2
+#        cat /home/runner/.m2/settings.xml
+#        mvn --batch-mode deploy -DskipTests
+#      env:
+#        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+#        MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+#        MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
