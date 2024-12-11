@@ -21,23 +21,22 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
 #        distribution: 'temurin'
-        server-id: ossrh
+        server-id: central
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
+    - name: Build
+      run: |
+        cp settings.xml /home/runner/.m2
+        cat /home/runner/.m2/settings.xml
+        mvn clean install -DskipTests
+
     - name: Debug
       run: |
         gpg --list-keys
-
-#    - name: Build
-#      run: |
-#        pwd
-#        ls -la /home/runner/.m2
-#        cp settings.xml /home/runner/.m2
-#        cat /home/runner/.m2/settings.xml
-#        mvn clean install -DskipTests
+        gpg --verify target/hello-world-0.0.1.jar.asc target/hello-world-0.0.1.jar
 #
 #    - name: Release artifacts
 #      run: |
