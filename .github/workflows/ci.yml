@@ -38,7 +38,6 @@ jobs:
     - name: Debug
       if: always()
       run: |
-        gpg --list-keys
         gpg --verify target/hello-world-0.0.1.jar.asc target/hello-world-0.0.1.jar
 #
 #    - name: Release artifacts
