@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.github.gr-oss-devops</groupId>
 	<artifactId>hello-world</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>hello-world</name>
 	<description>A demo for deployment to the Central Repository via OSSRH</description>
 	<url>https://github.com/gr-oss-devops/hello-world</url>
