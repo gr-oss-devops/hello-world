@@ -35,11 +35,6 @@ jobs:
       env:
         MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
-    - name: Debug
-      if: always()
-      run: |
-        gpg --verify target/hello-world-0.0.1.jar.asc target/hello-world-0.0.1.jar
-
     - name: Release artifacts
       run: |
         pwd
