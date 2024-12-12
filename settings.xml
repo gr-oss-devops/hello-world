@@ -15,7 +15,6 @@
                 <gpg.executable>gpg</gpg.executable>
                 <gpg.passphrase>${env.MAVEN_GPG_PASSPHRASE}</gpg.passphrase>
                 <gpg.args>--batch --pinentry-mode loopback</gpg.args>
-<!--                <gpg.keyFingerprint>${env.MAVEN_GPG_KEY_FINGERPRINT}</gpg.keyFingerprint>-->
             </properties>
         </profile>
     </profiles>

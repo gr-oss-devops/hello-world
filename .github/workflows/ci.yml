@@ -19,8 +19,8 @@ jobs:
       uses: actions/setup-java@c3ac5dd0ed8db40fedb61c32fbe677e6b355e94c
       with:
         java-version: '17'
-        distribution: 'adopt'
-#        distribution: 'temurin'
+#        distribution: 'adopt'
+        distribution: 'temurin'
         server-id: central
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
