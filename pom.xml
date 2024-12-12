@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.github.gr-oss-devops</groupId>
 	<artifactId>hello-world</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<name>hello-world</name>
 	<description>A demo for deployment to the Central Repository via OSSRH</description>
 	<url>https://github.com/gr-oss-devops/hello-world</url>
@@ -87,18 +87,6 @@
 					</execution>
 				</executions>
 			</plugin>
-<!--			<plugin>-->
-<!--				<groupId>org.sonatype.plugins</groupId>-->
-<!--				<artifactId>nexus-staging-maven-plugin</artifactId>-->
-<!--				<version>1.6.13</version>-->
-<!--				<extensions>true</extensions>-->
-<!--				<configuration>-->
-<!--					<serverId>central</serverId>-->
-<!--					<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
-<!--					<stagingProgressTimeoutMinutes>60</stagingProgressTimeoutMinutes>-->
-<!--					<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
 			<plugin>
 				<groupId>org.sonatype.central</groupId>
 				<artifactId>central-publishing-maven-plugin</artifactId>
@@ -123,13 +111,6 @@
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<!-- Specify the key ID to use -->
-					<gpgArguments>
-						<arg>--default-key</arg>
-						<arg>F258630064F6E2AD516FDB04650013F48467235F</arg>
-					</gpgArguments>
-				</configuration>
 			</plugin>
 
 		</plugins>
