@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    environment: release
+    environment: import-${{ github.ref_name }}
     runs-on: ubuntu-latest
 
     steps:
