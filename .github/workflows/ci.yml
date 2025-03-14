@@ -55,7 +55,7 @@ jobs:
 
       - name: Push changes
         run: |
-          git checkout -b automation_branch_name
+          git checkout -b $automation_branch_name
           git push --set-upstream origin $automation_branch_name
           git add .
           git commit -m "Auto-generated changes. Import $full_repo_name repository"
