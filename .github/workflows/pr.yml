@@ -2,11 +2,11 @@ name: Promote Imported Configs
 
 on:
   workflow_dispatch: {}
-  pull_request:
-    types: [closed]
-    branches: [ main ]
-    paths:
-      - 'dirA/**'
+#  pull_request:
+#    types: [closed]
+#    branches: [ main ]
+#    paths:
+#      - 'dirA/**'
 
 jobs:
   promote:
