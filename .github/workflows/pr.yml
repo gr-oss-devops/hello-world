@@ -1,0 +1,44 @@
+name: Promote Imported Configs
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [ main ]
+    paths:
+      - 'dirA/**'
+
+jobs:
+  promote:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    environment: promote
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Promote imported configs
+        run: find dirA -maxdepth 1 -type f \( -name "*.yaml" -o -name ".*.yaml" \) -print -exec mv {} dirB/ \;
+
+      - name: Generate a token
+        uses: actions/create-github-app-token@v1
+        id: generate-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ vars.OWNER }}
+
+      - name: Configure git
+        shell: bash
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Commit files
+        run: |
+          git add .
+          git commit -m "[bot] Promote imported configs from ${{ github.event.pull_request.ref_name }}"
+          git push origin ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
