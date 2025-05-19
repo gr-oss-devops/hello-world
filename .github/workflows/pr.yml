@@ -17,21 +17,20 @@ jobs:
       contents: write
     steps:
       - name: Generate a token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v2
         id: generate-token
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ vars.OWNER }}
-          repositories: hello-world
+          repositories: ${{ github.repository }}
 
       - name: Checkout
         uses: actions/checkout@v4
-        env:
-          token: ${{ steps.generate-token.outputs.token }}
         with:
-          persist-credentials: false
+          token: ${{ steps.generate-token.outputs.token }}
           ref: ${{ github.ref_name }}
+          persist-credentials: false
 
       - name: Promote imported configs
         run: find dirA -maxdepth 1 -type f \( -name "*.yaml" -o -name ".*.yaml" \) -print -exec mv {} dirB/ \;
