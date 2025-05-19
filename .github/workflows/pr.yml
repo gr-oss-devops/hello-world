@@ -23,7 +23,7 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ vars.OWNER }}
-          repositories: ${{ github.repository }}
+          repositories: hello-world
 
       - name: Checkout
         uses: actions/checkout@v4
