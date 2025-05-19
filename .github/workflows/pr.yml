@@ -30,7 +30,6 @@ jobs:
         with:
           token: ${{ steps.generate-token.outputs.token }}
           ref: ${{ github.ref_name }}
-          persist-credentials: false
 
       - name: Promote imported configs
         run: find dirA -maxdepth 1 -type f \( -name "*.yaml" -o -name ".*.yaml" \) -print -exec mv {} dirB/ \;
