@@ -15,6 +15,16 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Generate a token
+        uses: actions/create-github-app-token@v1
+        id: generate-token
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ vars.OWNER }}
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -22,15 +32,6 @@ jobs:
 
       - name: Promote imported configs
         run: find dirA -maxdepth 1 -type f \( -name "*.yaml" -o -name ".*.yaml" \) -print -exec mv {} dirB/ \;
-
-      - name: Generate a token
-        uses: actions/create-github-app-token@v1
-        id: generate-token
-        with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-          owner: ${{ vars.OWNER }}
-          repositories: hello-world
 
       - name: Configure git
         shell: bash
@@ -43,5 +44,3 @@ jobs:
           git add .
           git commit -m "[bot] Promote imported configs from ${{ github.event.pull_request.ref_name }}"
           git push origin ${{ github.ref_name }}
-        env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
