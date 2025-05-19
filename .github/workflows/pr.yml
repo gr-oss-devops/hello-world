@@ -44,3 +44,5 @@ jobs:
           git add .
           git commit -m "[bot] Promote imported configs from ${{ github.event.pull_request.ref_name }}"
           git push origin ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
