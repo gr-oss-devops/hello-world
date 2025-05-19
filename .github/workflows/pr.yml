@@ -12,8 +12,6 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     environment: promote
-    permissions:
-      contents: write
     steps:
       - name: Generate a token
         uses: actions/create-github-app-token@v2
