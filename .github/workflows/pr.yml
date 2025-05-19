@@ -22,6 +22,7 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ vars.OWNER }}
+          repsitories: hello-world
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,6 +42,7 @@ jobs:
 
       - name: Commit files
         run: |
+          echo "$GITHUB_TOKEN"
           git add .
           git commit -m "[bot] Promote imported configs from ${{ github.event.pull_request.ref_name }}"
           git push origin ${{ github.ref_name }}
